@@ -26,7 +26,33 @@ object Recursion extends App {
     factHelper(n,1)
   }
 
-  println(anotherFactorial(10000))
+  println(anotherFactorial(100))
+
+  @tailrec
+  def concatenateStringN(n: Int, str: String, accu: String): String = {
+    if(n <= 0) accu
+     else concatenateStringN(n - 1, str, accu + str)
+  }
+
+  println(concatenateStringN(10,"Janusz_",""))
+
+  def isPrime(n: Int): Boolean = {
+      @tailrec
+      def isPrimeTailrec(t: Int, isStillPrime: Boolean): Boolean = {
+          if(!isStillPrime) false
+          else if(t<=1) true
+          else {
+            println(t)
+            println(t%(t-1) != 0 && isStillPrime)
+            isPrimeTailrec(t-1,n % t != 0 && isStillPrime)
+          }
+      }
+
+      isPrimeTailrec(n/2,true)
+  }
+
+  println(isPrime(7))
+
 
 
 
